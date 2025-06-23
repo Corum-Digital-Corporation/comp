@@ -12,13 +12,14 @@ export const login = createSafeActionClient()
     }),
   )
   .action(async ({ parsedInput }) => {
-    await auth.api.signInEmailOTP({
+    /*await auth.api.emailOtp({
       body: {
         email: parsedInput.email,
         otp: parsedInput.otp,
       },
     });
-
+*/
+    
     return {
       success: true,
     };
