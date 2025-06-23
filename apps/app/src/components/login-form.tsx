@@ -2,6 +2,7 @@
 
 import { GithubSignIn } from '@/components/github-sign-in';
 import { GoogleSignIn } from '@/components/google-sign-in';
+import { MicrosoftSignIn } from '@/components/microsoft-sign-in';
 import { MagicLinkSignIn } from '@/components/magic-link';
 import { Button } from '@comp/ui/button';
 import { Card, CardContent, CardDescription, CardTitle } from '@comp/ui/card';
@@ -13,9 +14,10 @@ interface LoginFormProps {
   inviteCode?: string;
   showGoogle: boolean;
   showGithub: boolean;
+  showMicrosoft: boolean;
 }
 
-export function LoginForm({ inviteCode, showGoogle, showGithub }: LoginFormProps) {
+export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }: LoginFormProps) {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [magicLinkState, setMagicLinkState] = useState({ sent: false, email: '' });
 
@@ -69,6 +71,11 @@ export function LoginForm({ inviteCode, showGoogle, showGithub }: LoginFormProps
   if (showGithub) {
     moreOptionsList.push(<GithubSignIn key="github" inviteCode={inviteCode} />);
   }
+
+  if (showMicrosoft) {
+    moreOptionsList.push(<MicrosoftSignIn key="microsoft" inviteCode={inviteCode} />);
+  }
+
 
   return (
     <div className="space-y-4">

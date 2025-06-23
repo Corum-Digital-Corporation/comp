@@ -31,11 +31,23 @@ if (env.AUTH_GITHUB_ID && env.AUTH_GITHUB_SECRET) {
   };
 }
 
+if (env.MICROSOFT_CLIENT_ID && env.MICROSOFT_CLIENT_SECRET) {
+  socialProviders = {
+    ...socialProviders,
+    microsoft: {
+      clientId: env.MICROSOFT_CLIENT_ID as string,
+      clientSecret: env.MICROSOFT_CLIENT_SECRET as string,
+      tenantId: env.MICROSOFT_TENANT_ID as string,
+    },
+  };
+}
+
+
 export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: 'postgresql',
   }),
-  trustedOrigins: ['http://localhost:3000', 'https://app.trycomp.ai', 'https://dev.trycomp.ai'],
+  trustedOrigins: ['http://localhost:3000', 'https://comp.corumdigital.com', 'https://compadmin.corumdigital.com'],
   advanced: {
     database: {
       // This will enable us to fall back to DB for ID generation.
@@ -82,21 +94,10 @@ export const auth = betterAuth({
   plugins: [
     organization({
       async sendInvitationEmail(data) {
-        const isLocalhost = process.env.NODE_ENV === 'development';
-        const protocol = isLocalhost ? 'http' : 'https';
+        const domain = 'compadmin.corumdigital.com';
+        const inviteLink = `https://${domain}/invite/${data.invitation.id}`;
 
-        const betterAuthUrl = process.env.BETTER_AUTH_URL;
-        const isDevEnv = betterAuthUrl?.includes('dev.trycomp.ai');
-        const isProdEnv = betterAuthUrl?.includes('app.trycomp.ai');
-
-        const domain = isDevEnv
-          ? 'dev.trycomp.ai'
-          : isProdEnv
-            ? 'app.trycomp.ai'
-            : 'localhost:3000';
-        const inviteLink = `${protocol}://${domain}/invite/${data.invitation.id}`;
-
-        const url = `${protocol}://${domain}/auth`;
+        const url = `https://${domain}/auth`;
 
         await sendInviteMemberEmail({
           email: data.email,

@@ -12,6 +12,7 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: 'postgresql',
   }),
+  trustedOrigins: ['http://localhost:3000', 'https://compadmin.corumdigital.com', 'https://comp.corumdigital.com'],
   advanced: {
     // This will enable us to fall back to DB for ID generation.
     // It's important so we can use custom IDs specified in Prisma Schema.
@@ -21,12 +22,11 @@ export const auth = betterAuth({
   plugins: [
     organization({
       async sendInvitationEmail(data) {
-        const isLocalhost = process.env.NODE_ENV === 'development';
-        const protocol = isLocalhost ? 'http' : 'https';
-        const domain = isLocalhost ? 'localhost:3000' : 'app.trycomp.ai';
-        const inviteLink = `${protocol}://${domain}/invite/${data.invitation.id}`;
+        const isLocalhost = false;
+        const domain = 'compadmin.corumdigital.com';
+	      const inviteLink = `https://${domain}/invite/${data.invitation.id}`;
 
-        const url = `${protocol}://${domain}/auth`;
+        const url = `https://${domain}/auth`;
 
         await sendInviteMemberEmail({
           email: data.email,
@@ -64,6 +64,11 @@ export const auth = betterAuth({
     google: {
       clientId: process.env.AUTH_GOOGLE_ID!,
       clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    },
+    microsoft: {
+      clientId: process.env.MICROSOFT_CLIENT_ID as string,
+      clientSecret: process.env.MICROSOFT_CLIENT_SECRET as string,
+      tenantId: process.env.MICROSOFT_TENANT_ID as string,
     },
   },
   user: {
