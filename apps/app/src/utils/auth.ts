@@ -47,7 +47,8 @@ export const auth = betterAuth({
   database: prismaAdapter(db, {
     provider: 'postgresql',
   }),
-  trustedOrigins: ['http://localhost:3000', 'https://comp.corumdigital.com', 'https://compadmin.corumdigital.com'],
+  //trustedOrigins: ['http://localhost:3000', 'https://comp.corumdigital.com', 'https://compadmin.corumdigital.com'],
+  trustedOrigins: ['https://comp.corumdigital.com', 'https://compadmin.corumdigital.com'],
   advanced: {
     database: {
       // This will enable us to fall back to DB for ID generation.
