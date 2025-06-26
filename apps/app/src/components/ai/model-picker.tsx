@@ -16,7 +16,11 @@ interface ModelPickerProps {
 }
 
 const MODELS: Record<modelID, string> = {
-  'deepseek-r1-distill-llama-70b': 'A reasoning model',
+  'anthropic/claude-3.7-sonnet': 'Claude 3.7 Sonnet',
+  'openai/gpt-4-turbo': 'GPT-4 Turbo',
+  'openai/gpt-4o': 'GPT-4o',
+  'google/gemini-2.0-flash-001': 'Gemini 2.0 Flash',
+  'google/gemini-2.5-flash-preview-05-20': 'Gemini 2.5 Flash Preview',
 };
 
 export const ModelPicker = ({ selectedModel, setSelectedModel }: ModelPickerProps) => {

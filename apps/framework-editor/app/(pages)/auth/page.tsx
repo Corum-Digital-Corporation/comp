@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import Balancer from 'react-wrap-balancer';
 import { GoogleSignIn } from './google-sign-in';
+import { MicrosoftSignIn } from './microsoft-sign-in';
 import { Unauthorized } from './Unauthorized';
 
 export const metadata: Metadata = {
@@ -28,10 +29,10 @@ export default async function Page() {
 
   let preferredSignInOption: React.ReactNode;
 
-  if (process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET) {
+  if (process.env.MICROSOFT_CLIENT_ID && process.env.MICROSOFT_CLIENT_SECRET) {
     preferredSignInOption = (
       <div className="flex flex-col space-y-2">
-        <GoogleSignIn />
+        <MicrosoftSignIn />
       </div>
     );
   }
