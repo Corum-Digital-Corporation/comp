@@ -48,7 +48,7 @@ export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }:
     );
   }
 
-  const preferredSignInOption = showGoogle ? (
+  /*const preferredSignInOption = showGoogle ? (
     <GoogleSignIn inviteCode={inviteCode} />
   ) : (
     <MagicLinkSignIn
@@ -56,8 +56,18 @@ export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }:
       inviteCode={inviteCode}
       onMagicLinkSubmit={handleMagicLinkSent}
     />
-  );
+  );*/
 
+  const preferredSignInOption = showMicrosoft ? (
+    <MicrosoftSignIn inviteCode={inviteCode} />
+  ) : (
+    <MagicLinkSignIn
+      key="preferred-magic"
+      inviteCode={inviteCode}
+      onMagicLinkSubmit={handleMagicLinkSent}
+    />
+  );
+  /*
   const moreOptionsList = [];
   if (showGoogle) {
     moreOptionsList.push(
@@ -68,12 +78,13 @@ export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }:
       />,
     );
   }
+  */
   if (showGithub) {
     moreOptionsList.push(<GithubSignIn key="github" inviteCode={inviteCode} />);
   }
 
-  if (showMicrosoft) {
-    moreOptionsList.push(<MicrosoftSignIn key="microsoft" inviteCode={inviteCode} />);
+  if (showGoogle) {
+    moreOptionsList.push(<GoogleSignIn key="google" inviteCode={inviteCode} />);
   }
 
 

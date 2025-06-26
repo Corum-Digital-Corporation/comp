@@ -39,7 +39,6 @@ export const env = createEnv({
     MICROSOFT_CLIENT_ID: z.string().optional(),
     MICROSOFT_CLIENT_SECRET: z.string().optional(),
     MICROSOFT_TENANT_ID: z.string().optional(),
-    OPENROUTER_API_KEY: z.string().optional(),
   },
 
   client: {
@@ -90,7 +89,6 @@ export const env = createEnv({
     ZAPIER_HUBSPOT_WEBHOOK_URL: process.env.ZAPIER_HUBSPOT_WEBHOOK_URL,
     FLEET_URL: process.env.FLEET_URL,
     FLEET_TOKEN: process.env.FLEET_TOKEN,
-    OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
   },
 
   skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION,

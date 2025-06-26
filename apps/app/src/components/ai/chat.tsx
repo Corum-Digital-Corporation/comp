@@ -12,7 +12,7 @@ import { Messages } from './messages';
 export default function Chat() {
   const { data: session } = useSession();
 
-  const [selectedModel, setSelectedModel] = useState<modelID>('deepseek-r1-distill-llama-70b');
+  const [selectedModel, setSelectedModel] = useState<modelID>('openai/gpt-4-turbo');
 
   const { messages, input, handleInputChange, handleSubmit, error, status, stop } = useChat({
     maxSteps: 5,
