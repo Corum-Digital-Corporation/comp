@@ -3,6 +3,7 @@
 import { GithubSignIn } from '@/components/github-sign-in';
 import { GoogleSignIn } from '@/components/google-sign-in';
 import { MicrosoftSignIn } from '@/components/microsoft-sign-in';
+import { MicrosoftSignIn } from '@/components/microsoft-sign-in';
 import { MagicLinkSignIn } from '@/components/magic-link';
 import { Button } from '@comp/ui/button';
 import { Card, CardContent, CardDescription, CardTitle } from '@comp/ui/card';
@@ -18,7 +19,7 @@ interface LoginFormProps {
   showMicrosoft: boolean;
 }
 
-export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }: LoginFormProps) {
+export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft, showMicrosoft }: LoginFormProps) {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
   const [magicLinkState, setMagicLinkState] = useState({ sent: false, email: '' });
   const searchParams = useSearchParams();
@@ -50,6 +51,7 @@ export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }:
     );
   }
 
+  /*const preferredSignInOption = showGoogle ? (
   /*const preferredSignInOption = showGoogle ? (
     <GoogleSignIn inviteCode={inviteCode} />
   ) : (
@@ -83,6 +85,7 @@ export function LoginForm({ inviteCode, showGoogle, showGithub, showMicrosoft }:
     );
   }
   */
+
   if (showGithub) {
     moreOptionsList.push(
       <GithubSignIn

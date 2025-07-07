@@ -46,6 +46,10 @@ export const env = createEnv({
     MICROSOFT_CLIENT_SECRET: z.string().optional(),
     MICROSOFT_TENANT_ID: z.string().optional(),
     OPENROUTER_API_KEY: z.string().optional(),
+    MICROSOFT_CLIENT_ID: z.string().optional(),
+    MICROSOFT_CLIENT_SECRET: z.string().optional(),
+    MICROSOFT_TENANT_ID: z.string().optional(),
+    OPENROUTER_API_KEY: z.string().optional(),
   },
 
   client: {
@@ -123,6 +127,7 @@ export const env = createEnv({
     LINKEDIN_CONVERSIONS_ACCESS_TOKEN: process.env.LINKEDIN_CONVERSIONS_ACCESS_TOKEN,
     NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL,
     SLACK_SALES_WEBHOOK: process.env.SLACK_SALES_WEBHOOK,
+    OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
   },
 
   skipValidation: !!process.env.CI || !!process.env.SKIP_ENV_VALIDATION,
